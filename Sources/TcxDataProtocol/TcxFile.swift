@@ -114,6 +114,10 @@ extension TcxFile {
             if let date = formatterFullTime.date(from: dateStr) {
                 return date
             }
+
+            if let date = formatterISO.date(from: dateStr) {
+                return date
+            }
             
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateStr)")
         }
