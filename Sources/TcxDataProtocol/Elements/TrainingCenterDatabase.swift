@@ -38,7 +38,7 @@ public struct TrainingCenterDatabase {
     var schemaLocation: String? = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd"
 
     /// UserProfile Schema
-    var xmlnsNs2: String = "http://www.garmin.com/xmlschemas/UserProfile/v2"
+    var xmlnsNs2: String? = "http://www.garmin.com/xmlschemas/UserProfile/v2"
 
     /// ActivityExtension Schema
     var xmlnsNs3: String? = "http://www.garmin.com/xmlschemas/ActivityExtension/v2"
@@ -47,7 +47,7 @@ public struct TrainingCenterDatabase {
     var xmlnsNs4: String? = "http://www.garmin.com/xmlschemas/ProfileExtension/v1"
 
     /// ActivityGoals Schema
-    var xmlnsNs5: String = "http://www.garmin.com/xmlschemas/ActivityGoals/v1"
+    var xmlnsNs5: String? = "http://www.garmin.com/xmlschemas/ActivityGoals/v1"
 
     /// TrainingCenterDatabase Schema
     var xmlns: String = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2"
