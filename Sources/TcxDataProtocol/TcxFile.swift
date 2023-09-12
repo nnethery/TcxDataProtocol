@@ -46,7 +46,15 @@ public struct TcxFile {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
-    
+
+    private static let formatterISO: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+
     
     /// Training Center Database
     private(set) public var database: TrainingCenterDatabase
