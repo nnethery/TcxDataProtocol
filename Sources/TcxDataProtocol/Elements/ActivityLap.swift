@@ -91,7 +91,7 @@ public struct ActivityLap {
         self.totalTime = totalTime
         self.distance = distance
         self.maximumSpeed = maximumSpeed
-        self.calories = UInt16(calories.rounded())
+        self.calories = UInt16(calories)
         self.averageHeartRate = averageHeartRate
         self.maximumHeartRate = maximumHeartRate
         self.intensity = intensity
