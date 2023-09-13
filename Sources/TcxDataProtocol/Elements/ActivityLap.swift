@@ -56,13 +56,13 @@ public struct ActivityLap {
     private(set) public var maximumHeartRate: HeartRateInBeatsPerMinute?
 
     /// Intensity
-    private(set) public var intensity: Intensity
+    private(set) public var intensity: Intensity?
 
     /// Cadence
     private(set) public var cadence: UInt8?
 
     /// Trigger Method
-    private(set) public var triggerMethod: TriggerMethod
+    private(set) public var triggerMethod: TriggerMethod?
 
     /// Track
     private(set) public var track: [Track]?
@@ -128,11 +128,11 @@ public struct ActivityLap {
 
         self.averageHeartRate = try? container.decode(HeartRateInBeatsPerMinute.self, forKey: .averageHeartRate)
         self.maximumHeartRate = try? container.decode(HeartRateInBeatsPerMinute.self, forKey: .maximumHeartRate)
-        self.intensity = try container.decode(Intensity.self, forKey: .intensity)
+        self.intensity = try? container.decode(Intensity.self, forKey: .intensity)
 
         // Skip cadence
 
-        self.triggerMethod = try container.decode(TriggerMethod.self, forKey: .triggerMethod)
+        self.triggerMethod = try? container.decode(TriggerMethod.self, forKey: .triggerMethod)
         self.track = try? container.decode([Track].self, forKey: .track)
         self.notes = try? container.decode(String.self, forKey: .notes)
         self.extensions = try? container.decode([Extension].self, forKey: .extensions)
