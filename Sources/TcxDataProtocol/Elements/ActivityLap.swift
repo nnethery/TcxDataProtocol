@@ -77,7 +77,7 @@ public struct ActivityLap {
                 totalTime: Double,
                 distance: Double,
                 maximumSpeed: Double?,
-                calories: Double,
+                calories: UInt16,
                 averageHeartRate: HeartRateInBeatsPerMinute?,
                 maximumHeartRate: HeartRateInBeatsPerMinute?,
                 intensity: Intensity,
