@@ -77,7 +77,7 @@ public struct ActivityLap {
                 totalTime: Double,
                 distance: Double,
                 maximumSpeed: Double?,
-                calories: UInt16,
+                calories: Double,
                 averageHeartRate: HeartRateInBeatsPerMinute?,
                 maximumHeartRate: HeartRateInBeatsPerMinute?,
                 intensity: Intensity,
@@ -91,7 +91,7 @@ public struct ActivityLap {
         self.totalTime = totalTime
         self.distance = distance
         self.maximumSpeed = maximumSpeed
-        self.calories = UInt16(calories)
+        self.calories = UInt16(calories.rounded())
         self.averageHeartRate = averageHeartRate
         self.maximumHeartRate = maximumHeartRate
         self.intensity = intensity
