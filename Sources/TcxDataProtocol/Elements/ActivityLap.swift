@@ -91,7 +91,7 @@ public struct ActivityLap {
         self.totalTime = totalTime
         self.distance = distance
         self.maximumSpeed = maximumSpeed
-        self.calories = UInt16(calories.rounded())
+        self.calories = calories
         self.averageHeartRate = averageHeartRate
         self.maximumHeartRate = maximumHeartRate
         self.intensity = intensity
@@ -104,6 +104,38 @@ public struct ActivityLap {
         self.track = track
         self.notes = notes
         self.extensions = extensions
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.startTime = try? container.decode(Date.self, forKey: .startTime)
+        self.totalTime = try container.decode(Double.self, forKey: .totalTime)
+        self.distance = try container.decode(Double.self, forKey: .distance)
+        self.maximumSpeed = try? container.decode(Double.self, forKey: .maximumSpeed)
+
+
+        // Custom decoding logic for 'calories'
+        if let caloriesAsDouble = try? container.decode(Double.self, forKey: .calories) {
+            self.calories = UInt16(caloriesAsDouble.rounded())
+        } else if let caloriesAsUInt16 = try? container.decode(UInt16.self, forKey: .calories) {
+            self.calories = caloriesAsUInt16
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .calories,
+                                                   in: container,
+                                                   debugDescription: "Calories should be either a Double or UInt16.")
+        }
+
+        self.averageHeartRate = try? container.decode(HeartRateInBeatsPerMinute.self, forKey: .averageHeartRate)
+        self.maximumHeartRate = try? container.decode(HeartRateInBeatsPerMinute.self, forKey: .maximumHeartRate)
+        self.intensity = try container.decode(Intensity.self, forKey: .intensity)
+
+        // Skip cadence
+
+        self.triggerMethod = try container.decode(TriggerMethod.self, forKey: .triggerMethod)
+        self.track = try? container.decode([Track].self, forKey: .track)
+        self.notes = try? container.decode(String.self, forKey: .notes)
+        self.extensions = try? container.decode([Extension].self, forKey: .extensions)
     }
 }
 
