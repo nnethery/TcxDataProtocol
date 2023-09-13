@@ -82,7 +82,7 @@ public struct Trackpoint {
 
         if let timeString = try? container.decode(String.self, forKey: .time) {
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXXXX"
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
             formatter.locale = Locale(identifier: "en_US_POSIX")
             if let date = formatter.date(from: timeString) {
