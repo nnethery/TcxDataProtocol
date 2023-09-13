@@ -85,7 +85,7 @@ public struct Trackpoint {
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
             formatter.locale = Locale(identifier: "en_US_POSIX")
-            if let date = dateFormatter.date(from: timeString) {
+            if let date = formatter.date(from: timeString) {
                 self.time = date
             }
         } else {
