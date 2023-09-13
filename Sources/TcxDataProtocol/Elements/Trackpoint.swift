@@ -76,6 +76,30 @@ public struct Trackpoint {
         self.sensorState = sensorState
         self.extensions = extensions
     }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        if let timeString = try? container.decode(String.self, forKey: .time) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            if let date = dateFormatter.date(from: timeString) {
+                self.time = date
+            }
+        } else {
+            self.time = try? container.decode(Date.self, forKey: .time)
+        }
+
+        self.position = try? container.decode(Position.self, forKey: .position)
+        self.altitude = try? container.decode(Double.self, forKey: .altitude)
+        self.distance = try? container.decode(Double.self, forKey: .distance)
+        self.heartRate = try? container.decode(HeartRateInBeatsPerMinute.self, forKey: .heartRate)
+        self.cadence = try? container.decode(UInt8.self, forKey: .cadence)
+        self.sensorState = try? container.decode(SensorState.self, forKey: .sensorState)
+        self.extensions = try? container.decode([Extension].self, forKey: .extensions)
+    }
 }
 
 extension Trackpoint: Equatable {
