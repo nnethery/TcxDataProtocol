@@ -133,6 +133,12 @@ public struct ActivityLap {
         // Skip cadence
 
         self.triggerMethod = try? container.decode(TriggerMethod.self, forKey: .triggerMethod)
+        do {
+            self.track = try container.decode([Track].self, forKey: .track)
+        } catch {
+            print("Failed to decode track: \(error)")
+            self.track = nil // Or provide a default value or handle the error appropriately
+        }
         self.track = try? container.decode([Track].self, forKey: .track)
         self.notes = try? container.decode(String.self, forKey: .notes)
         self.extensions = try? container.decode([Extension].self, forKey: .extensions)
